@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="ProductivityPlanner.Desktop/ProductivityPlanner.Desktop.csproj" Id="51e074d3-962e-4b31-a8b2-bdfa18cf3d60" />
   <Project Path="ProductivityPlanner.API.csproj" />
+  <Project Path="ProductivityPlanner.Mobile/ProductivityPlanner.Mobile.csproj" Id="41883e2e-94ad-4343-8964-169278d01c8c" />
 </Solution>
