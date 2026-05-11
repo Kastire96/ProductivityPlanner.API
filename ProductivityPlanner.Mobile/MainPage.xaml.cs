@@ -1,24 +1,43 @@
-﻿namespace ProductivityPlanner.Mobile
+﻿using ProductivityPlanner.Mobile.Services;
+
+namespace ProductivityPlanner.Mobile
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private readonly ApiService _apiService;
 
         public MainPage()
         {
             InitializeComponent();
+            _apiService = new ApiService();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private async void OnLoginClicked(object sender, EventArgs e)
         {
-            count++;
+            ErrorLabel.IsVisible = false;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
+            string email = EmailEntry.Text?.Trim();
+            string password = PasswordEntry.Text?.Trim();
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                ErrorLabel.Text = "Wprowadź e-mail oraz hasło!";
+                ErrorLabel.IsVisible = true;
+                return;
+            }
+
+            var user = await _apiService.LoginAsync(email, password);
+
+            if (user != null)
+            {
+                Preferences.Default.Set("LoggedUserId", user.Id);
+                Application.Current.MainPage = new NavigationPage(new TasksPage());
+            }
             else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            {
+                ErrorLabel.Text = "Błędny e-mail lub hasło!";
+                ErrorLabel.IsVisible = true;
+            }
         }
     }
 }
