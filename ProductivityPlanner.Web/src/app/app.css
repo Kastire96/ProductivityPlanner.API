@@ -1,0 +1,168 @@
+:host {
+  display: block;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.login-card {
+  max-width: 400px;
+  margin: 100px auto 0 auto;
+  text-align: center;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #4b5563;
+  }
+
+.form-control {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  width: 100%;
+}
+
+  .btn-primary:hover {
+    background-color: #1d4ed8;
+  }
+
+.btn-success {
+  background-color: #10b981;
+  color: white;
+}
+
+  .btn-success:hover {
+    background-color: #059669;
+  }
+
+.btn-danger {
+  background-color: #ef4444;
+  color: white;
+}
+
+  .btn-danger:hover {
+    background-color: #dc2626;
+  }
+
+.btn-small {
+  padding: 4px 8px;
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.btn-blue {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-red {
+  background-color: #f87171;
+  color: white;
+}
+
+.error-msg {
+  color: #ef4444;
+  margin-top: 12px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.inline-form {
+  display: flex;
+  gap: 12px;
+}
+
+  .inline-form input, .inline-form select {
+    flex: 1;
+  }
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+  .task-table th, .task-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+  }
+
+.completed-text {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+}
+
+.category-badge {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.status-indicator {
+  color: #f59e0b;
+}
+
+.status-completed {
+  color: #10b981;
+}
+
+.no-tasks {
+  text-align: center;
+  color: #6b7280;
+  padding: 24px;
+}

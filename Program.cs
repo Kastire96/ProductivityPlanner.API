@@ -3,11 +3,9 @@ using ProductivityPlanner.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Konfiguracja SQLite
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=productivity.db"));
 
-// CORS – kluczowe, aby Angular i aplikacje klienckie mogły łączyć się z API
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -21,10 +19,18 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // Domyślny port Angulara
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
-// Automatycznie tworzy bazę danych 'productivity.db' przy starcie, jeśli jeszcze nie istnieje
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -39,6 +45,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
+app.UseCors("AllowAngular");
 app.UseAuthorization();
 app.MapControllers();
 

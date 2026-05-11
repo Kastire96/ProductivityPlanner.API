@@ -1,0 +1,95 @@
+<div class="container">
+  @if (!token()) {
+  <div class="card login-card">
+    <h2>Planer Produktywności</h2>
+    <p class="subtitle">Zaloguj się do swojego konta</p>
+
+    <form (ngSubmit)="onLogin(); $event.preventDefault()">
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" name="email" [(ngModel)]="loginData.email" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Hasło:</label>
+        <input type="password" name="password" [(ngModel)]="loginData.password" required class="form-control">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Zaloguj się</button>
+    </form>
+
+    @if (errorMessage()) {
+    <p class="error-msg">{{ errorMessage() }}</p>
+    }
+  </div>
+  }
+
+  @if (token()) {
+  <div class="dashboard">
+    <header class="header">
+      <h1>Moje Zadania</h1>
+      <button (click)="onLogout()" class="btn btn-danger">Wyloguj się</button>
+    </header>
+
+    <div class="card add-task-card">
+      <h3>Dodaj nowe zadanie</h3>
+      <form (ngSubmit)="onAddTask()" class="inline-form">
+        <input type="text" name="title" [(ngModel)]="newTask.title" placeholder="Tytuł zadania..." required class="form-control">
+        <input type="text" name="category" [(ngModel)]="newTask.category" placeholder="Kategoria..." class="form-control">
+
+        <select name="priority" [(ngModel)]="newTask.priority" class="form-control">
+          <option>Niski</option>
+          <option>Średni</option>
+          <option>Wysoki</option>
+        </select>
+
+        <button type="submit" class="btn btn-success">Dodaj</button>
+      </form>
+    </div>
+
+    <div class="card table-card">
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tytuł</th>
+            <th>Kategoria</th>
+            <th>Priorytet</th>
+            <th>Status</th>
+            <th>Akcje</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (task of tasks(); track task.id) {
+          <tr>
+            <td>{{ task.id }}</td>
+            <td [class.completed-text]="task.status === 2">{{ task.title }}</td>
+            <td><span class="badge category-badge">{{ task.category }}</span></td>
+            <td>
+              <span class="badge priority-badge">
+                {{ task.priority === 0 ? 'Niski' : task.priority === 1 ? 'Średni' : 'Wysoki' }}
+              </span>
+            </td>
+            <td>
+              <span class="status-indicator" [class.status-completed]="task.status === 2">
+                {{ task.status === 2 ? 'Zakończone' : 'W toku' }}
+              </span>
+            </td>
+            <td>
+              @if (task.status !== 2) {
+              <button (click)="onCompleteTask(task.id)" class="btn btn-small btn-blue">Zakończ</button>
+              }
+              <button (click)="onDeleteTask(task.id)" class="btn btn-small btn-red">Usuń</button>
+            </td>
+          </tr>
+          } @empty {
+          <tr>
+            <td colspan="6" class="no-tasks">Brak zadań w bazie. Dodaj pierwsze zadanie powyżej!</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  }
+</div>
