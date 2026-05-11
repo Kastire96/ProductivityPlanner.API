@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductivityPlanner.Mobile.TasksPage"
+             Title="Twoje Zadania"
+             BackgroundColor="#F3F4F6">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
+        <HorizontalStackLayout Grid.Row="0" Margin="0,0,0,20">
+            <Label Text="Lista zadań" FontSize="24" FontAttributes="Bold" TextColor="#1F2937" />
+        </HorizontalStackLayout>
+
+        <CollectionView Grid.Row="1" x:Name="TasksCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border StrokeThickness="1" Stroke="#E5E7EB" Margin="0,5" Padding="15" BackgroundColor="White">
+                        <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold" TextColor="#1F2937" />
+                                <Label Text="{Binding Category}" FontSize="12" TextColor="#6B7280" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="2" Text="Wyloguj się" Clicked="OnLogoutClicked" BackgroundColor="#EF4444" TextColor="White" FontAttributes="Bold" HeightRequest="50" Margin="0,20,0,0" />
+    </Grid>
+</ContentPage>
