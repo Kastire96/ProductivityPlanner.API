@@ -5,26 +5,69 @@
              Title="Twoje Zadania"
              BackgroundColor="#F3F4F6">
 
-    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
-        <HorizontalStackLayout Grid.Row="0" Margin="0,0,0,20">
-            <Label Text="Lista zadań" FontSize="24" FontAttributes="Bold" TextColor="#1F2937" />
-        </HorizontalStackLayout>
+    <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="20" RowSpacing="15">
 
-        <CollectionView Grid.Row="1" x:Name="TasksCollectionView">
+        <Label Grid.Row="0" 
+               Text="Twoje zadania" 
+               FontSize="28" 
+               FontAttributes="Bold" 
+               TextColor="#1F2937" />
+
+        <Border Grid.Row="1" StrokeThickness="1" Stroke="#E5E7EB" Padding="10" BackgroundColor="White">
+            <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                <Entry x:Name="NewTaskEntry"
+                       Grid.Column="0"
+                       Placeholder="Wpisz nowe zadanie..."
+                       TextColor="#1F2937"
+                       PlaceholderColor="#9CA3AF" />
+
+                <Button Grid.Column="1"
+                        Text="Dodaj"
+                        Clicked="OnAddTaskClicked"
+                        BackgroundColor="#2563EB"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Padding="15,0" />
+            </Grid>
+        </Border>
+
+        <CollectionView Grid.Row="2" x:Name="TasksCollectionView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border StrokeThickness="1" Stroke="#E5E7EB" Margin="0,5" Padding="15" BackgroundColor="White">
-                        <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Title}" FontSize="18" FontAttributes="Bold" TextColor="#1F2937" />
-                                <Label Text="{Binding Category}" FontSize="12" TextColor="#6B7280" />
+                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="15">
+
+                            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                                <Label Text="{Binding Title}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#1F2937" />
+                                <Label Text="{Binding Category}" 
+                                       FontSize="12" 
+                                       TextColor="#6B7280" />
                             </VerticalStackLayout>
-                        </FlexLayout>
+
+                            <Button Grid.Column="1"
+                                    Text="Zakończ" 
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnCompleteTaskClicked"
+                                    BackgroundColor="#EF4444" 
+                                    TextColor="White" 
+                                    FontAttributes="Bold"
+                                    HeightRequest="40" 
+                                    VerticalOptions="Center" />
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Grid.Row="2" Text="Wyloguj się" Clicked="OnLogoutClicked" BackgroundColor="#EF4444" TextColor="White" FontAttributes="Bold" HeightRequest="50" Margin="0,20,0,0" />
+        <Button Grid.Row="3" 
+                Text="Wyloguj się" 
+                Clicked="OnLogoutClicked" 
+                BackgroundColor="#374151" 
+                TextColor="White" 
+                FontAttributes="Bold" 
+                HeightRequest="50" />
     </Grid>
 </ContentPage>
