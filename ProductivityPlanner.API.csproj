@@ -18,6 +18,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
+	  <Compile Remove="ProductivityPlanner.Desktop\**\*" />
+	  <Content Remove="ProductivityPlanner.Desktop\**\*" />
+	  <EmbeddedResource Remove="ProductivityPlanner.Desktop\**\*" />
+	  <None Remove="ProductivityPlanner.Desktop\**\*" />
   </ItemGroup>
 
 </Project>
