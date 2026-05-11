@@ -1,7 +1,5 @@
 <Solution>
-  <Project Path="ProductivityPlanner.Desktop/ProductivityPlanner.Desktop.csproj" Id="51e074d3-962e-4b31-a8b2-bdfa18cf3d60">
-    <Build Solution="Debug|*" Project="false" />
-  </Project>
+  <Project Path="ProductivityPlanner.Desktop/ProductivityPlanner.Desktop.csproj" Id="51e074d3-962e-4b31-a8b2-bdfa18cf3d60" />
   <Project Path="ProductivityPlanner.API.csproj" />
   <Project Path="ProductivityPlanner.Mobile/ProductivityPlanner.Mobile.csproj" Id="81fa9a92-2aef-4f09-a78d-35dbf3206522">
     <Deploy Solution="Debug|*" />

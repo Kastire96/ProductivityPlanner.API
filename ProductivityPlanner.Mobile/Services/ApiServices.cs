@@ -52,6 +52,45 @@ namespace ProductivityPlanner.Mobile.Services
             }
             return new List<TaskModel>();
         }
+
+        public async Task<bool> AddTaskAsync(string title)
+        {
+            try
+            {
+                int userId = Preferences.Default.Get("LoggedUserId", 0);
+                if (userId == 0) return false;
+
+                var newTask = new
+                {
+                    Title = title,
+                    Category = "Do zrobienia",
+                    IsCompleted = false,
+                    UserId = userId
+                };
+
+                var response = await _httpClient.PostAsJsonAsync($"{_apiUrl}/Tasks", newTask);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Błąd podczas dodawania zadania: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteTaskAsync(int taskId)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"{_apiUrl}/Tasks/{taskId}");
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Błąd podczas usuwania zadania: {ex.Message}");
+                return false;
+            }
+        }
     }
 
     public class UserModel
