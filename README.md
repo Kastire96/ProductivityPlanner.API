@@ -1,5 +1,5 @@
 # Productivity Planner - Aplikacja i API
-Projekt stworzony w .NET 10, który składa się z dwóch części:
+Projekt stworzony w .NET 10, który składa się z czterech części:
 
 1. Web API (serwer i baza danych ASP.NET Core)
 
